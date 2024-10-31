@@ -35,4 +35,5 @@ jobs:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       with:
         fail_ci_if_error: true
-        slug: wqxxzd/S3NoSQLDB
+        name: S3NoSQLDB
+        verbose: true
