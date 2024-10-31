@@ -9,7 +9,7 @@ import boto3
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from exceptions import CollectionError, DocumentError
+from .exceptions import CollectionError, DocumentError
 
 
 class S3NoSQLDB:
