@@ -1,53 +1,71 @@
-# S3NoSQL
+# S3NoSQLDB
 
-A NoSQL database implementation using Amazon S3 as storage.
+A NoSQL Database Implementation using Amazon S3 for storage.
 
 ## Features
 
-- Document-based storage using S3
-- Collection management with indexing
-- Batch operations support
-- Compression support
-- Thread-safe operations
-- Streaming query results
+- Create and manage collections in S3 buckets
+- Batch document insertion with automatic ID generation
+- Concurrent processing using ThreadPoolExecutor
+- Query documents using custom filter functions
+- Parquet file format with gzip compression
 
 ## Installation
 
 ```bash
-pip install s3nosql
+pip install s3nosqldb
 ```
 
 ## Quick Start
 
 ```python
-from s3nosql import S3NoSQLDB
+from s3nosqldb import S3NoSQLDB
 
 # Initialize the database
 db = S3NoSQLDB(
-    bucket_name="my-database",
-    base_path="production",
-    region_name="us-east-1"
+    bucket_name="your-bucket-name",
+    base_path="optional/path",
+    batch_size=50000,
+    max_workers=4
 )
 
-# Create a collection with an index
-db.create_collection("users", indexes=["email"])
+# Create a collection
+db.create_collection("users", id_field="user_id", auto_generate_id=True)
 
-# Insert a document
-user = {
-    "email": "dan.zhang0224@gmail.com",
-    "name": "Dan Zhang"
-}
-doc_id = db.insert("users", user)
+# Insert documents
+users = [
+    {"name": "John Doe", "age": 30},
+    {"name": "Jane Smith", "age": 25}
+]
+db.insert_batch("users", users)
 
-# Find a document
-result = db.find_one("users", {"email": "dan.zhang0224@gmail.com"})
-print(f"Found user: {result}")
+# Query documents
+def age_filter(doc):
+    return doc["age"] > 25
+
+results = db.query("users", filter_fn=age_filter)
 ```
 
-## Documentation
+## Development
 
-For full documentation, visit [docs/](docs/).
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/s3nosqldb.git
+cd s3nosqldb
+```
+
+2. Create a virtual environment and install dependencies:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -e .[dev]
+```
+
+3. Run tests:
+```bash
+pytest
+```
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
