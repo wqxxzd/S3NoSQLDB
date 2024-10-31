@@ -1,12 +1,12 @@
 import json
 import pytest
-from moto import mock_s3
+from moto import mock_aws
 import boto3
 from s3nosqldb import S3NoSQLDB, CollectionError, DocumentError
 
 @pytest.fixture
 def s3():
-    with mock_s3():
+    with mock_aws():
         s3 = boto3.client("s3")
         s3.create_bucket(Bucket="test-bucket")
         yield s3
