@@ -27,7 +27,7 @@ jobs:
       run: |
         pytest --cov=s3nosqldb --cov-report=xml
     - name: Upload results to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: wqxxzd/NoSQLS3DB
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: wqxxzd/NoSQLS3DB
