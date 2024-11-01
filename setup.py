@@ -11,7 +11,7 @@ setup(
     description="A NoSQL Database Implementation using Amazon S3",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/s3nosqldb",
+    url="https://github.com/wqxxzd/s3nosqldb",
     packages=find_packages(exclude=["tests*"]),
     classifiers=[
         "Development Status :: 3 - Alpha",

@@ -50,7 +50,7 @@ results = db.query("users", filter_fn=age_filter)
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/s3nosqldb.git
+git clone https://github.com/wqxxzd/s3nosqldb.git
 cd s3nosqldb
 ```
 
