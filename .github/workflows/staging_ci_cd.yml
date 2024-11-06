@@ -1,17 +1,16 @@
-name: Sync to Staging Workflow
+name: Sync to Staging Label Workflow
 
 on:
-  push:
-    tags:
-      - 'sync-to-staging'
-  create:
-    tags:
-      - 'sync-to-staging'
+  pull_request:
+    types: [labeled, synchronize]
 
 jobs:
-  sync-job:
+  sync-to-staging:
+    if: |
+      (github.event.label.name == 'sync-to-staging') ||
+      (contains(github.event.pull_request.labels.*.name, 'sync-to-staging') && github.event.action == 'synchronize')
     runs-on: ubuntu-latest
     
     steps:
-      - name: Print Hello World
+      - name: Hello World
         run: echo "Hello World"
