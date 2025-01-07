@@ -2,11 +2,11 @@ name: Test Github Action 2
 on:
   workflow_run:
     workflows:
-      - "Test Github Action 1"
+      - "Test GitHub Action 1"
     branches:
       - main
     types:
-      - success
+      - completed
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
